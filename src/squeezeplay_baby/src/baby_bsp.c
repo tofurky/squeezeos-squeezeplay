@@ -12,6 +12,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <alsa/asoundlib.h>
+#include <sys/stat.h>
 
 
 static int msp430_event_fd = -1;
