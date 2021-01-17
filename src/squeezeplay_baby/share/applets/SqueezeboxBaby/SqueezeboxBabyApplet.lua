@@ -730,12 +730,18 @@ end
 
 
 function setDate(self, epoch)
+	if math.abs(os.time() - epoch) <= 1 then
+		return
+	end
+
 	squeezeos.swclockSetEpoch(epoch);
 	local success,err = squeezeos.sys2hwclock()
 	if not success then
 		log:warn("sys2hwclock() failed: ", err)
 	end
 	iconbar:update()
+
+	log:info("setDate: ", epoch)
 end
 
 
