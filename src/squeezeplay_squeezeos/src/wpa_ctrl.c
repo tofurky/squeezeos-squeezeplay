@@ -307,13 +307,12 @@ int wpa_ctrl_recv(struct wpa_ctrl *ctrl, char *reply, size_t *reply_len)
 int wpa_ctrl_pending(struct wpa_ctrl *ctrl)
 {
 	struct timeval tv;
-	int res;
 	fd_set rfds;
 	tv.tv_sec = 0;
 	tv.tv_usec = 0;
 	FD_ZERO(&rfds);
 	FD_SET(ctrl->s, &rfds);
-	res = select(ctrl->s + 1, &rfds, NULL, NULL, &tv);
+	select(ctrl->s + 1, &rfds, NULL, NULL, &tv);
 	return FD_ISSET(ctrl->s, &rfds);
 }
 
